@@ -25,5 +25,8 @@ echo $result
 # Remove leading carriage returns.
 result=$(echo $result | sed 's/^\^//g')
 
+# Escape result for xdotool
+result=$(echo $result | sed 's/\(["\]\)/\\\1/g')
+
 # Paste using xdotool.
 xdotool type --delay 25 --clearmodifiers "$result"
