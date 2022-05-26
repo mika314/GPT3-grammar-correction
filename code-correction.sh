@@ -23,8 +23,5 @@ jsonOutput=$(curl https://api.openai.com/v1/engines/code-davinci-002/completions
 # Extract the result from jsonOutput.
 result=$(echo "$jsonOutput" | jq -r '.choices[0].text')
 
-# Remove leading carriage returns.
-result=$(echo "$result" | sed 's/^\^//g')
-
 # Paste using xdotool.
-xdotool type --delay 25 --clearmodifiers "$result"
+xdotool type --delay 25 --clearmodifiers "${result:2}"
